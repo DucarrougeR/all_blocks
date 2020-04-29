@@ -10,11 +10,17 @@ include: "*.view.lkml"                # include all views in the Bitcoin_Cryptoc
 explore: blocks {
   join: inputs {
     sql_on: ${blocks.hash} = ${inputs.block_hash} ;;
+    relationship: many_to_one
+    type: left_outer
   }
   join: outputs {
     sql_on: ${blocks.hash} = ${outputs.block_hash} ;;
+    relationship: many_to_one
+    type: left_outer
   }
   join: transactions {
     sql_on: ${blocks.hash} = ${transactions.block_hash} ;;
+    relationship: many_to_one
+    type: left_outer
   }
 }
